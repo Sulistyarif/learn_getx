@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_getx/controllers/cart_controller.dart';
 import 'package:learn_getx/presentation/add_item_page.dart';
+import 'package:learn_getx/presentation/subscribed_page.dart';
 
 class HomePage extends GetView<CartController> {
   HomePage({super.key});
