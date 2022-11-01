@@ -1,5 +1,5 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class SubscribedPage extends StatelessWidget {
   final String? link;
@@ -7,6 +7,13 @@ class SubscribedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Subscribed Page'),
+      ),
+      body: WebView(
+        initialUrl: link ?? 'https://www.google.com/',
+      ),
+    );
   }
 }

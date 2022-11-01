@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:learn_getx/cart_binding.dart';
 import 'package:learn_getx/controllers/cart_controller.dart';
 import 'package:learn_getx/presentation/home_page.dart';
+import 'package:learn_getx/presentation/subscribed_page.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 void main() async {
@@ -20,6 +21,11 @@ void main() async {
     print('==body: ${openedResult.notification.additionalData.toString()}');
     openedResult.notification.additionalData!.forEach((key, value) {
       print("===Key:$key | value: $value");
+      if (key == 'link') {
+        if (value != null) {
+          Get.to(SubscribedPage(link: value));
+        }
+      }
     });
   });
 }
