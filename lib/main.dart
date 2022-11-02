@@ -1,7 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:learn_getx/cart_binding.dart';
 import 'package:learn_getx/controllers/cart_controller.dart';
 import 'package:learn_getx/presentation/home_page.dart';
@@ -9,7 +8,10 @@ import 'package:learn_getx/presentation/subscribed_page.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 void main() async {
+  await GetStorage.init();
+
   runApp(MyApp());
+
   //Remove this method to stop OneSignal Debugging
   OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
   OneSignal.shared.setAppId("7ab8b595-fc3e-4613-8a9b-ad45a1dcf0ef");
@@ -33,9 +35,12 @@ void main() async {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
   final cartController = Get.put(CartController());
+  final storage = GetStorage();
 
   @override
   Widget build(BuildContext context) {
+    storage.writeIfNull('customerName', '-');
+    cartController.updateCustomerName(storage.read('customerName'));
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'GetX Learn',
